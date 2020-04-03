@@ -12,7 +12,7 @@ thresholdRedelijkRond = 0.5
 thresholdErgRond = 0.8
 thresholdTeRond = 0.90
 
-thresholdVeelGaten = 50
+thresholdGroteGaten = 50
 
 hierarchy = hierarchy[0]
 for cnr in range(len(contours)):
@@ -32,13 +32,13 @@ for cnr in range(len(contours)):
         #klassificeer de bouten en moeren
         if factor > thresholdTeRond:#binnenste cirkel van liggende moer (veel te rond)
             continue
-        elif factor < thresholdRedelijkRond and holes is 0: #liggende bout (niet rond, zonder gaten)
+        elif factor < thresholdRedelijkRond and holes < thresholdGroteGaten: #liggende bout (niet rond, zonder gaten)
             cv2.drawContours(img, [cnt], -1, (0,255,255), 3)
-        elif factor > thresholdErgRond and holes < thresholdVeelGaten: #staande bout (erg rond, met weinig gaten)
+        elif factor > thresholdErgRond and holes < thresholdGroteGaten: #staande bout (erg rond, met weinig gaten)
             cv2.drawContours(img, [cnt], -1, (100,200,0), 3)
-        elif factor > thresholdRedelijkRond and holes > thresholdVeelGaten:#liggende moer(redelijk rond, met veel gaten)
+        elif factor > thresholdRedelijkRond and holes > thresholdGroteGaten:#liggende moer(redelijk rond, met veel gaten)
             cv2.drawContours(img, [cnt], -1, (255,0,0), 3)
-        elif factor > thresholdRedelijkRond and holes is 0:#staande moer(redelijk rond, zonder gaten)
+        elif factor > thresholdRedelijkRond and holes < thresholdGroteGaten:#staande moer(redelijk rond, zonder gaten)
             cv2.drawContours(img, [cnt], -1, (255,0,250), 3)
         print("Area: " + str(area) + " Factor: " + str(factor) + "Holes: " + str(holes))
 

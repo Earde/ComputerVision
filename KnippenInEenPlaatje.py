@@ -4,7 +4,7 @@ import math
 
 # parameters: define ranges of color in HSV
 def showColor(lower_color, upper_color):
-    img = cv2.imread('./tek1.png')
+    img = cv2.imread('./tek2.png')
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     
     # Threshold the HSV image to get only blue colors
@@ -23,12 +23,15 @@ def showColor(lower_color, upper_color):
 lower_blue = np.array([110,50,50])
 upper_blue = np.array([130,255,255])
 
-lower_red = np.array([0,50,50])
-upper_red = np.array([10,255,255])
+lower_red1 = np.array([0,50,50])
+upper_red1 = np.array([10,255,255])
+lower_red2 = np.array([170,50,50])
+upper_red2 = np.array([180,255,255])
 
-lower_green = np.array([60,50,50])
-upper_green = np.array([80,255,255])
 
-showColor(lower_blue, upper_blue)
+lower_green = np.array([50,50,50])
+upper_green = np.array([70,255,255])
+
+#showColor(lower_blue, upper_blue)
 showColor(lower_red, upper_red)
-showColor(lower_green, upper_green)
+#showColor(lower_green, upper_green)
